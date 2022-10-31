@@ -21,19 +21,19 @@ const Signup = () => {
               <label className="label">
                 <span className="label-text">Name</span>
               </label>
-              <input type="text" placeholder="Your name" className="input input-bordered" />
+              <input type="text" name='name' placeholder="Your name" className="input input-bordered" />
             </div>
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Email</span>
               </label>
-              <input type="text" placeholder="Your email" className="input input-bordered" />
+              <input type="text" name='email' placeholder="Your email" className="input input-bordered" required />
             </div>
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Password</span>
               </label>
-              <input type="text" placeholder="Your password" className="input input-bordered" />
+              <input type="text" name='password' placeholder="Your password" className="input input-bordered" required />
             </div>
             <div className="form-control mt-6">
               <input className="btn btn-primary" type="submit" value="Sign Up" />
