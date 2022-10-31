@@ -4,11 +4,12 @@ import img from '../../assets/images/login/login.svg';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 
 const Signup = () => {
-  const { createUser } = useContext(AuthContext);
+  const { createUser, updateUserInfo } = useContext(AuthContext);
 
   const handleSignUp = event => {
     event.preventDefault();
     const form = event.target;
+    const name = form.name.value;
     const email = form.email.value;
     const password = form.password.value;
 
@@ -16,6 +17,21 @@ const Signup = () => {
       .then(result => {
         const user = result.user;
         console.log(user);
+        handleUserInfo(name)
+      })
+      .catch(err => {
+        console.error('error: ', err);
+      })
+  };
+
+  const handleUserInfo = (name) => {
+    const profile = {
+      displayName: name
+    };
+
+    updateUserInfo(profile)
+      .then(() => {
+
       })
       .catch(err => {
         console.error('error: ', err);
