@@ -1,0 +1,45 @@
+[
+  
+  {
+    "id": "01",
+    "name": "Car Engine Plug",
+    "price": "20.00",
+    "review": "5",
+    "img": "https://i.ibb.co/9pJMHy8/img1.png"
+  },
+  {
+    "id": "02",
+    "name": "Car Air Filter",
+    "price": "20.00",
+    "review": "5",
+    "img": "https://i.ibb.co/S3TR9PR/img2.png"
+  },
+  {
+    "id": "03",
+    "name": "Cools Saw Machine",
+    "price": "20.00",
+    "review": "5",
+    "img": "https://i.ibb.co/qjJhsmW/img3.png"
+  },
+  {
+    "id": "04",
+    "name": "Cools Horizontal Saw Machine",
+    "price": "20.00",
+    "review": "5",
+    "img": "https://i.ibb.co/5Fp7mPr/img4.png"
+  },
+  {
+    "id": "05",
+    "name": "Cools Car Tyres",
+    "price": "20.00",
+    "review": "5",
+    "img": "https://i.ibb.co/6Rr4n4X/img5.png"
+  },
+  {
+    "id": "06",
+    "name": "Car Engine Battery",
+    "price": "20.00",
+    "review": "5",
+    "img": "https://i.ibb.co/JczmmGd/img6.png"
+  }
+]
