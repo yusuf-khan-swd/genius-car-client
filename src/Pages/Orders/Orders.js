@@ -34,6 +34,29 @@ const Orders = () => {
     }
   };
 
+  const handleStatusUpdate = id => {
+    fetch(`http://localhost:5000/orders/${id}`, {
+      method: 'PATCH',
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify({ status: 'Approve' })
+    })
+      .then(res => res.json())
+      .then(data => {
+        console.log(data);
+        if (data.modifiedCount > 0) {
+          const remaining = orders.filter(odr => odr._id !== id);
+          const approving = orders.find(odr => odr._id === id);
+          approving.status = 'Approve';
+          const newOrders = [...remaining, approving];
+          console.log(newOrders);
+          setOrders(newOrders);
+        }
+      })
+
+  };
+
   return (
     <div>
       <h2 className="text-5xl">You Have {orders.length} Orders</h2>
@@ -42,9 +65,6 @@ const Orders = () => {
           <thead>
             <tr>
               <th>
-                <label>
-                  <input type="checkbox" className="checkbox" />
-                </label>
               </th>
               <th>Name</th>
               <th>Job</th>
@@ -58,6 +78,7 @@ const Orders = () => {
                 key={order._id}
                 order={order}
                 handleDelete={handleDelete}
+                handleStatusUpdate={handleStatusUpdate}
               ></OrdersRow>
             ))}
           </tbody>
