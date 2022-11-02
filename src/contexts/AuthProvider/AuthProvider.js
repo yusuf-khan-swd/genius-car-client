@@ -17,7 +17,7 @@ const AuthProvider = ({ children }) => {
     return updateProfile(auth.currentUser, profile);
   };
 
-  const logIn = (email, password) => {
+  const login = (email, password) => {
     return signInWithEmailAndPassword(auth, email, password);
   };
 
@@ -33,7 +33,7 @@ const AuthProvider = ({ children }) => {
 
   }, []);
 
-  const authInfo = { user, loading, createUser, updateUserInfo, logIn };
+  const authInfo = { user, loading, createUser, updateUserInfo, login };
 
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>

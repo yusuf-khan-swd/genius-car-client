@@ -4,7 +4,7 @@ import img from '../../assets/images/login/login.svg';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 
 const Login = () => {
-  const { logIn } = useContext(AuthContext);
+  const { login } = useContext(AuthContext);
 
   const handleLogin = event => {
     event.preventDefault();
@@ -12,7 +12,7 @@ const Login = () => {
 
     const email = form.email.value;
     const password = form.password.value;
-    logIn(email, password)
+    login(email, password)
       .then(result => {
         const user = result.user;
         console.log(user);
