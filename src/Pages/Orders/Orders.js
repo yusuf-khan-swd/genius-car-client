@@ -3,14 +3,27 @@ import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
 import OrdersRow from "./OrdersRow";
 
 const Orders = () => {
-  const { user } = useContext(AuthContext);
+  const { user, logOut } = useContext(AuthContext);
   const [orders, setOrders] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/orders?email=${user?.email}`)
-      .then((res) => res.json())
-      .then((data) => setOrders(data));
-  }, [user?.email]);
+    fetch(`http://localhost:5000/orders?email=${user?.email}`, {
+      headers: {
+        authorization: `Bearer ${localStorage.getItem('genius-token')}`
+      }
+    })
+      .then((res) => {
+        if (res.status > 400) {
+          return logOut()
+            .then(() => { })
+            .catch(err => console.error(err))
+        }
+        return res.json()
+      })
+      .then((data) => {
+        setOrders(data)
+      });
+  }, [user?.email, logOut]);
 
   const handleDelete = (id) => {
     const proceed = window.confirm(
