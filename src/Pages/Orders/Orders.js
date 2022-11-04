@@ -33,6 +33,9 @@ const Orders = () => {
     if (proceed) {
       fetch(`http://localhost:5000/orders/${id}`, {
         method: "DELETE",
+        headers: {
+          authorization: `Bearer ${localStorage.getItem('genius-token')}`
+        }
       })
         .then((res) => res.json())
         .then((data) => {
@@ -49,7 +52,8 @@ const Orders = () => {
     fetch(`http://localhost:5000/orders/${id}`, {
       method: 'PATCH',
       headers: {
-        'content-type': 'application/json'
+        'content-type': 'application/json',
+        authorization: `Bearer ${localStorage.getItem('genius-token')}`
       },
       body: JSON.stringify({ status: 'Approve' })
     })
