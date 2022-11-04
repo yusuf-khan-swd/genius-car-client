@@ -33,7 +33,6 @@ const Checkout = () => {
     })
       .then(res => res.json())
       .then(data => {
-        console.log(data)
         if (data.acknowledged) {
           alert('Order placed successfully')
           form.reset();
