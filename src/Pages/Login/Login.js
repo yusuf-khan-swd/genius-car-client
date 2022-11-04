@@ -19,8 +19,25 @@ const Login = () => {
     login(email, password)
       .then(result => {
         const user = result.user;
-        console.log(user);
-        navigation(from, { replace: true });
+
+        const currentUser = {
+          email: user.email
+        }
+
+        fetch('http://localhost:5000/jwt', {
+          method: 'POST',
+          headers: {
+            'content-type': 'application/json'
+          },
+          body: JSON.stringify(currentUser)
+        })
+          .then(res => res.json())
+          .then(data => {
+            console.log(data);
+            localStorage.setItem('genius-token', data.token);
+          })
+
+        // navigation(from, { replace: true });
       })
       .catch(err => {
         console.error('error: ', err);
