@@ -35,9 +35,9 @@ const Login = () => {
           .then(data => {
             console.log(data);
             localStorage.setItem('genius-token', data.token);
+            navigation(from, { replace: true });
           })
 
-        // navigation(from, { replace: true });
       })
       .catch(err => {
         console.error('error: ', err);
