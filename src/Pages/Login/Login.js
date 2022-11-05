@@ -5,6 +5,8 @@ import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 import SocialLogin from '../Shared/SocialLogin/SocialLogin';
 
 const Login = () => {
+  const { setLoading } = useContext(AuthContext);
+
   const navigation = useNavigate();
   const location = useLocation();
   const from = location.state?.from.pathname || "/";
@@ -41,6 +43,9 @@ const Login = () => {
       })
       .catch(err => {
         console.error('error: ', err);
+      })
+      .finally(() => {
+        setLoading(false)
       })
   };
 
