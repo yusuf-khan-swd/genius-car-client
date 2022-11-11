@@ -3,12 +3,13 @@ import ServiceCard from "./ServiceCard";
 
 const Services = () => {
   const [services, setServices] = useState([]);
+  const [isAsc, setIsAsc] = useState(true);
 
   useEffect(() => {
-    fetch('http://localhost:5000/services')
+    fetch(`http://localhost:5000/services?order=${isAsc ? 'asc' : 'desc'}`)
       .then(res => res.json())
       .then(data => setServices(data))
-  }, []);
+  }, [isAsc]);
 
   return (
     <div className="mb-32">
@@ -19,6 +20,7 @@ const Services = () => {
           The majority have suffered alteration in some form, by injected
           humour, or Randomised <br /> words which don't look even slightly believable.
         </p>
+        <button onClick={() => setIsAsc(!isAsc)} className="btn btn-primary mt-8"> {isAsc ? 'Show Services as Descending Order' : 'Show Services as Ascending Order'} </button>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-14">
         {
