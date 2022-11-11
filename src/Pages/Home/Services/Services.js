@@ -20,7 +20,7 @@ const Services = () => {
           The majority have suffered alteration in some form, by injected
           humour, or Randomised <br /> words which don't look even slightly believable.
         </p>
-        <button onClick={() => setIsAsc(!isAsc)} className="btn btn-primary mt-8"> {isAsc ? 'Show Services as Descending Order' : 'Show Services as Ascending Order'} </button>
+        <button onClick={() => setIsAsc(!isAsc)} className="btn btn-ghost outline outline-1 outline-gray-300 mt-8"> {isAsc ? 'Show Services as Descending Order' : 'Show Services as Ascending Order'} </button>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-14">
         {
