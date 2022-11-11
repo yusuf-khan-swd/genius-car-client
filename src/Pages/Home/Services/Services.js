@@ -1,15 +1,22 @@
 import React, { useEffect, useState } from "react";
+import { useRef } from "react";
 import ServiceCard from "./ServiceCard";
 
 const Services = () => {
   const [services, setServices] = useState([]);
   const [isAsc, setIsAsc] = useState(true);
+  const [search, setSearch] = useState();
+  const searchRef = useRef();
+
+  const handleSearch = () => {
+    setSearch(searchRef.current.value);
+  };
 
   useEffect(() => {
-    fetch(`http://localhost:5000/services?order=${isAsc ? 'asc' : 'desc'}`)
+    fetch(`http://localhost:5000/services?search=${search}&order=${isAsc ? 'asc' : 'desc'}`)
       .then(res => res.json())
       .then(data => setServices(data))
-  }, [isAsc]);
+  }, [isAsc, search]);
 
   return (
     <div className="mb-32">
@@ -20,7 +27,14 @@ const Services = () => {
           The majority have suffered alteration in some form, by injected
           humour, or Randomised <br /> words which don't look even slightly believable.
         </p>
-        <button onClick={() => setIsAsc(!isAsc)} className="btn btn-ghost outline outline-1 outline-gray-300 mt-8"> {isAsc ? 'Show Services as Descending Order' : 'Show Services as Ascending Order'} </button>
+        <div className="mb-3">
+          <button onClick={() => setIsAsc(!isAsc)} className="btn btn-ghost outline outline-1 outline-gray-300 mt-8"> {isAsc ? 'Show Services as Descending Order' : 'Show Services as Ascending Order'} </button>
+        </div>
+        <div>
+          <input ref={searchRef} type="text" className="input input-bordered input-md mr-2" />
+          <button onClick={handleSearch} className="btn btn-secondary">Search</button>
+        </div>
+
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-14">
         {
